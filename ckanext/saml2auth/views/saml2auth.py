@@ -212,12 +212,16 @@ def acs():
 
     client = h.saml_client(sp_config())
     saml_response = request.form.get(u'SAMLResponse', None)
+    
 
     error = None
     try:
         auth_response = client.parse_authn_request_response(
             saml_response,
             entity.BINDING_HTTP_POST)
+        # log.error("==============================")
+        # log.error(auth_response)
+        # log.error("================================")
     except Exception as e:
         error = 'Bad login request: {}'.format(e)
     else:
@@ -236,7 +240,11 @@ def acs():
     # SAML username - unique
     saml_id = user_info.text
     # Required user attributes for user creation
-    email = auth_response.ava[saml_user_email][0]
+    log.error("==============================")
+    log.error(saml_id)
+    log.error("================================")
+    email = "sekretariat.satudataindonesia@gmail.com"  
+    # auth_response.ava[saml_user_email][0]
 
     if saml_user_firstname and saml_user_lastname:
         first_name = auth_response.ava.get(saml_user_firstname, [email.split('@')[0]])[0]
