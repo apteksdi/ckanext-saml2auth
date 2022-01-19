@@ -243,7 +243,7 @@ def acs():
     log.error("==============================")
     log.error(saml_id)
     log.error("================================")
-    email = "sekretariat.satudataindonesia@gmail.com"  
+    email = saml_id
     # auth_response.ava[saml_user_email][0]
 
     if saml_user_firstname and saml_user_lastname:
